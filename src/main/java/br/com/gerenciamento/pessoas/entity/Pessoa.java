@@ -1,5 +1,6 @@
 package br.com.gerenciamento.pessoas.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import javax.persistence.*;
 

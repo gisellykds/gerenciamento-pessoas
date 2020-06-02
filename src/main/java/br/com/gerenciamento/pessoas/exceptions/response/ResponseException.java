@@ -2,11 +2,16 @@ package br.com.gerenciamento.pessoas.exceptions.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+import javax.servlet.http.HttpServletRequest;
 
 @Getter
-@Setter
 @AllArgsConstructor
 public class ResponseException {
-    private String message;
+        public final String path;
+        public final String message;
+
+        public ResponseException(HttpServletRequest path, RuntimeException ex) {
+            this.path = path.getRequestURI();
+            this.message = ex.getLocalizedMessage();
+        }
 }

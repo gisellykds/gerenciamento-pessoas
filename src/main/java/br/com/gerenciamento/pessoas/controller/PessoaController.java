@@ -2,8 +2,6 @@ package br.com.gerenciamento.pessoas.controller;
 
 import br.com.gerenciamento.pessoas.dto.PessoaDTO;
 import br.com.gerenciamento.pessoas.dto.PessoaRespostaDTO;
-import br.com.gerenciamento.pessoas.entity.Pessoa;
-import br.com.gerenciamento.pessoas.exceptions.PessoaNotFoundException;
 import br.com.gerenciamento.pessoas.facade.PessoaFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

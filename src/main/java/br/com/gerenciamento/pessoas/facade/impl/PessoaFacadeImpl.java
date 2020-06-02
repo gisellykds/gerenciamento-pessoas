@@ -11,8 +11,6 @@ import br.com.gerenciamento.pessoas.repository.PessoaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,8 +29,8 @@ public class PessoaFacadeImpl implements PessoaFacade {
     }
 
     @Override
-    public List<PessoaRespostaDTO> obterTodos() {
-        List<Pessoa> allPeople = verifyEmpty(repository.findAll());
+    public List<PessoaRespostaDTO> obterTodos() throws PessoaNotFoundException{
+        List<Pessoa> allPeople = verifyNotEmpty();
         return allPeople.stream()
                 .map(mapper::toResposta)
                 .collect(Collectors.toList());
@@ -56,10 +54,9 @@ public class PessoaFacadeImpl implements PessoaFacade {
                 .orElseThrow(() -> new PessoaNotFoundException(id));
     }
 
-    private List<Pessoa> verifyEmpty(List<Pessoa> lista) throws PessoaNotFoundException{
-        if (lista.isEmpty())
-            throw new NotFoundException();
-        return lista;
+    private List<Pessoa> verifyNotEmpty() throws PessoaNotFoundException{
+        return repository.findAll().stream().findAny().map((e) -> repository.findAll())
+                .orElseThrow(NotFoundException::new);
     }
 
 }

@@ -50,11 +50,12 @@ public class PessoaFacadeImpl implements PessoaFacade {
 
     private Pessoa verifyIfExists(Long id) throws NotFoundException {
         return repository.findById(id)
-                .orElseThrow(() -> new NotFoundException());
+                .orElseThrow(NotFoundException::new);
     }
 
     private List<Pessoa> verifyNotEmpty() throws NotFoundException{
-        return repository.findAll().stream().findAny().map((e) -> repository.findAll())
+        List<Pessoa> list = repository.findAll();
+        return list.stream().findAny().map(pessoa -> list)
                 .orElseThrow(NotFoundException::new);
     }
 

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -23,24 +22,24 @@ public class PersonController {
     private PersonFacade personFacade;
 
     @GetMapping("")
-    public List<PersonResponseDTO> obterTodos() {
-        return personFacade.obterTodos();
+    public List<PersonResponseDTO> getAll() {
+        return personFacade.getAll();
     }
 
     @GetMapping("/{id}")
-    public PersonResponseDTO obterId(@PathVariable @NotNull Long id) {
-        return personFacade.obterId(id);
+    public PersonResponseDTO getById(@PathVariable @NotNull Long id) {
+        return personFacade.getById(id);
     }
 
     @PostMapping("")
-    public PersonResponseDTO salvar(@RequestBody @Valid PersonDTO entrada){
-        return personFacade.salvar(entrada);
+    public PersonResponseDTO create(@RequestBody @Valid PersonDTO entrada){
+        return personFacade.create(entrada);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id)  {
-        personFacade.deletar(id);
+        personFacade.deleteById(id);
     }
 
 }

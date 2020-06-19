@@ -12,6 +12,6 @@ public interface PersonMapper {
 
     Person toEntityFromDto(PersonDTO pessoaDTO);
 
-    PersonResponseDTO toRespostaFromEntity(Person pessoa);
+    PersonResponseDTO toResponseFromEntity(Person pessoa);
 
 }

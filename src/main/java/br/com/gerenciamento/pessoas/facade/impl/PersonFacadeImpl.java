@@ -23,7 +23,7 @@ public class PersonFacadeImpl implements PersonFacade {
     @Override
     public PersonResponseDTO create(PersonDTO entrada) {
         Person entity = repository.save(mapper.toEntityFromDto(entrada));
-        PersonResponseDTO resposta = mapper.toRespostaFromEntity(entity);
+        PersonResponseDTO resposta = mapper.toResponseFromEntity(entity);
         return resposta;
     }
 
@@ -31,14 +31,14 @@ public class PersonFacadeImpl implements PersonFacade {
     public List<PersonResponseDTO> getAll() {
         List<Person> allPeople = verifyNotEmpty();
         return allPeople.stream()
-                .map(mapper::toRespostaFromEntity)
+                .map(mapper::toResponseFromEntity)
                 .collect(Collectors.toList());
     }
 
     @Override
     public PersonResponseDTO getById(Long id) {
         Person entity = verifyIfExists(id);
-        PersonResponseDTO resposta = mapper.toRespostaFromEntity(entity);
+        PersonResponseDTO resposta = mapper.toResponseFromEntity(entity);
         return resposta;
     }
 

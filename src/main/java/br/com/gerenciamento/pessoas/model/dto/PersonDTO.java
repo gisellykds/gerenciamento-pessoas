@@ -5,7 +5,6 @@ import lombok.*;
 import org.hibernate.validator.constraints.br.*;
 import javax.validation.constraints.*;
 
-@Data
 @Builder
 public class PersonDTO {
 

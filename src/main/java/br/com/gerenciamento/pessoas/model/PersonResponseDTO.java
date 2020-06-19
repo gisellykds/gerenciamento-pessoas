@@ -6,13 +6,7 @@ import org.hibernate.validator.constraints.br.*;
 import javax.validation.constraints.*;
 
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class PersonResponseDTO {
-
-    private Long id;
-
     @NotBlank
     @JsonProperty("nome")
     private String firstName;

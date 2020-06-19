@@ -43,9 +43,10 @@ public class PersonFacadeImpl implements PersonFacade {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public String deleteById(Long id) {
         verifyIfExists(id);
         repository.deleteById(id);
+        return "Successfully deleted!";
     }
 
     private Person verifyIfExists(Long id) throws NotFoundException {

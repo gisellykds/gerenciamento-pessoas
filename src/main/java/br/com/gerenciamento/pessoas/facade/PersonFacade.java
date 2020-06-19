@@ -8,5 +8,5 @@ public interface PersonFacade {
     public PersonResponseDTO create(PersonDTO entrada);
     public List<PersonResponseDTO> getAll();
     public PersonResponseDTO getById(Long id);
-    public void deleteById(Long id);
+    public String deleteById(Long id);
 }

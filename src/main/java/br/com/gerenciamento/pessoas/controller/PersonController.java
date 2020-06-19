@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -22,24 +23,24 @@ public class PersonController {
     private PersonFacade personFacade;
 
     @GetMapping("")
-    public List<PersonResponseDTO> getAll() {
-        return personFacade.getAll();
+    public ResponseEntity<List<PersonResponseDTO>> getAll() {
+        return ResponseEntity.ok(personFacade.getAll());
     }
 
     @GetMapping("/{id}")
-    public PersonResponseDTO getById(@PathVariable @NotNull Long id) {
-        return personFacade.getById(id);
+    public ResponseEntity<PersonResponseDTO> getById(@PathVariable @NotNull Long id) {
+        return ResponseEntity.ok(personFacade.getById(id));
     }
 
     @PostMapping("")
-    public PersonResponseDTO create(@RequestBody @Valid PersonDTO entrada){
-        return personFacade.create(entrada);
+    public ResponseEntity<PersonResponseDTO> create(@RequestBody @Valid PersonDTO entrada){
+        return new ResponseEntity(personFacade.create(entrada), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id)  {
-        personFacade.deleteById(id);
+    public ResponseEntity<String> deleteById(@PathVariable Long id)  {
+        String message = personFacade.deleteById(id);
+        return ResponseEntity.ok(message);
     }
 
 }

@@ -7,8 +7,8 @@ import javax.validation.constraints.*;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class PessoaDTO {
 
     @NotBlank

@@ -1,4 +1,4 @@
-package br.com.gerenciamento.pessoas.dto;
+package br.com.gerenciamento.pessoas.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -7,16 +7,14 @@ import javax.validation.constraints.*;
 
 @Data
 @Builder
-//@AllArgsConstructor
-//@NoArgsConstructor
-public class PessoaDTO {
+public class PersonDTO {
 
     @NotBlank
-    @JsonProperty("nome")
+    @JsonProperty("name")
     private String firstName;
 
     @NotBlank
-    @JsonProperty("sobrenome")
+    @JsonProperty("lastname")
     private String lastName;
 
     @NotBlank

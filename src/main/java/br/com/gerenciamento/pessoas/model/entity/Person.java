@@ -1,6 +1,5 @@
-package br.com.gerenciamento.pessoas.entity;
+package br.com.gerenciamento.pessoas.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import javax.persistence.*;
 
@@ -9,7 +8,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pessoa {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,4 +1,4 @@
-package br.com.gerenciamento.pessoas.dto;
+package br.com.gerenciamento.pessoas.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -9,7 +9,8 @@ import javax.validation.constraints.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PessoaRespostaDTO {
+public class PersonResponseDTO {
+
     private Long id;
 
     @NotBlank

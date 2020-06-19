@@ -1,8 +1,8 @@
 package br.com.gerenciamento.pessoas.controller;
 
-import br.com.gerenciamento.pessoas.dto.PessoaDTO;
-import br.com.gerenciamento.pessoas.dto.PessoaRespostaDTO;
-import br.com.gerenciamento.pessoas.facade.PessoaFacade;
+import br.com.gerenciamento.pessoas.model.PersonResponseDTO;
+import br.com.gerenciamento.pessoas.model.dto.PersonDTO;
+import br.com.gerenciamento.pessoas.facade.PersonFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -18,29 +18,29 @@ import java.util.List;
 @RequestMapping("/api/v1/pessoas")
 @CrossOrigin
 @Configuration
-public class PessoaController {
+public class PersonController {
 
-    private PessoaFacade pessoaFacade;
+    private PersonFacade personFacade;
 
     @GetMapping("")
-    public List<PessoaRespostaDTO> obterTodos() {
-        return pessoaFacade.obterTodos();
+    public List<PersonResponseDTO> obterTodos() {
+        return personFacade.obterTodos();
     }
 
     @GetMapping("/{id}")
-    public PessoaRespostaDTO obterId(@PathVariable @NotNull Long id) {
-        return pessoaFacade.obterId(id);
+    public PersonResponseDTO obterId(@PathVariable @NotNull Long id) {
+        return personFacade.obterId(id);
     }
 
     @PostMapping("")
-    public PessoaRespostaDTO salvar(@RequestBody @Valid PessoaDTO entrada){
-        return pessoaFacade.salvar(entrada);
+    public PersonResponseDTO salvar(@RequestBody @Valid PersonDTO entrada){
+        return personFacade.salvar(entrada);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id)  {
-        pessoaFacade.deletar(id);
+        personFacade.deletar(id);
     }
 
 }

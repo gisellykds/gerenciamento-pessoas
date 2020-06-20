@@ -8,11 +8,11 @@ import javax.validation.constraints.*;
 @Data
 public class PersonResponseDTO {
     @NotBlank
-    @JsonProperty("nome")
+    @JsonProperty("first_name")
     private String firstName;
 
     @NotBlank
-    @JsonProperty("sobrenome")
+    @JsonProperty("last_name")
     private String lastName;
 
     @NotBlank

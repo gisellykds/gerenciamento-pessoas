@@ -6,14 +6,15 @@ import org.hibernate.validator.constraints.br.*;
 import javax.validation.constraints.*;
 
 @Builder
+@Data
 public class PersonDTO {
 
     @NotBlank
-    @JsonProperty("name")
+    @JsonProperty("first_name")
     private String firstName;
 
     @NotBlank
-    @JsonProperty("lastname")
+    @JsonProperty("last_name")
     private String lastName;
 
     @NotBlank

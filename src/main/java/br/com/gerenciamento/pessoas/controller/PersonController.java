@@ -15,7 +15,7 @@ import java.util.List;
 
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
-@RequestMapping("/api/v1/pessoas")
+@RequestMapping("/api/v1/person")
 @CrossOrigin
 @Configuration
 public class PersonController {

@@ -1,6 +1,8 @@
 package br.com.gerenciamento.pessoas.utils.exceptions.controller;
 
+import br.com.gerenciamento.pessoas.utils.exceptions.AlreadyUpdateException;
 import br.com.gerenciamento.pessoas.utils.exceptions.NotFoundException;
+import br.com.gerenciamento.pessoas.utils.exceptions.ParameterNotIdentifyException;
 import br.com.gerenciamento.pessoas.utils.exceptions.response.ResponseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,4 +19,17 @@ public class ControllerExceptionHandler {
         return new ResponseException(request, exception);
     }
 
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(AlreadyUpdateException.class)
+    ResponseException AlreadyUpdateException(HttpServletRequest request, AlreadyUpdateException exception) {
+        return new ResponseException(request, exception);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ParameterNotIdentifyException.class)
+    ResponseException ParameterNotIdentifyException(HttpServletRequest request, ParameterNotIdentifyException exception) {
+        return new ResponseException(request, exception);
+    }
+
 }
+

@@ -5,11 +5,11 @@ import br.com.gerenciamento.pessoas.model.MessageResponse;
 import br.com.gerenciamento.pessoas.model.PersonResponse;
 import br.com.gerenciamento.pessoas.model.PersonDTO;
 import br.com.gerenciamento.pessoas.model.Person;
-import br.com.gerenciamento.pessoas.utils.exceptions.AlreadyUpdate;
+import br.com.gerenciamento.pessoas.utils.exceptions.AlreadyUpdateException;
 import br.com.gerenciamento.pessoas.utils.exceptions.NotFoundException;
 import br.com.gerenciamento.pessoas.facade.PersonFacade;
 import br.com.gerenciamento.pessoas.repository.PersonRepository;
-import br.com.gerenciamento.pessoas.utils.exceptions.ParameterNotIdentify;
+import br.com.gerenciamento.pessoas.utils.exceptions.ParameterNotIdentifyException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,7 +61,7 @@ public class PersonFacadeImpl implements PersonFacade {
             return true;
         if(active.equals("inactive"))
             return false;
-        throw new ParameterNotIdentify(active);
+        throw new ParameterNotIdentifyException(active);
     }
 
     @Override
@@ -99,14 +99,14 @@ public class PersonFacadeImpl implements PersonFacade {
 
     private Person inactivePerson(Person entity){
         if(entity.getActive().equals(false))
-            throw new AlreadyUpdate("active");
+            throw new AlreadyUpdateException("active");
         entity.setActive(false);
         return entity;
     }
 
     private Person activePerson(Person entity){
         if(entity.getActive().equals(true))
-            throw new AlreadyUpdate("inactive");
+            throw new AlreadyUpdateException("inactive");
         entity.setActive(true);
         return entity;
     }

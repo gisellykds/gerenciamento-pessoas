@@ -1,12 +1,12 @@
 package br.com.gerenciamento.pessoas.template;
 
-import br.com.gerenciamento.pessoas.model.PersonResponseDTO;
-import br.com.gerenciamento.pessoas.model.dto.PersonDTO;
-import br.com.gerenciamento.pessoas.model.entity.Person;
+import br.com.gerenciamento.pessoas.model.PersonResponse;
+import br.com.gerenciamento.pessoas.model.PersonDTO;
+import br.com.gerenciamento.pessoas.model.Person;
 
 public class PersonTemplate {
     private final Person person = new Person();
-    private final PersonResponseDTO personResponseDTO = new PersonResponseDTO();
+    private final PersonResponse personResponseDTO = new PersonResponse();
     private final PersonDTO personDto = PersonDTO.builder().cpf("709.998.950-38").firstName("first").lastName("last").build();
 
     public Person getPerson(){
@@ -17,7 +17,7 @@ public class PersonTemplate {
         return person;
     }
 
-    public PersonResponseDTO getPersonResponseDTO(){
+    public PersonResponse getPersonResponseDTO(){
         personResponseDTO.setCpf("709.998.950-38");
         personResponseDTO.setFirstName("first");
         personResponseDTO.setLastName("last");

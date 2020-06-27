@@ -1,4 +1,4 @@
-package br.com.gerenciamento.pessoas.exceptions.response;
+package br.com.gerenciamento.pessoas.utils.exceptions.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -2,9 +2,9 @@ package br.com.gerenciamento.pessoas.service;
 
 import br.com.gerenciamento.pessoas.facade.impl.PersonFacadeImpl;
 import br.com.gerenciamento.pessoas.mapper.PersonMapper;
-import br.com.gerenciamento.pessoas.model.PersonResponseDTO;
-import br.com.gerenciamento.pessoas.model.dto.PersonDTO;
-import br.com.gerenciamento.pessoas.model.entity.Person;
+import br.com.gerenciamento.pessoas.model.PersonResponse;
+import br.com.gerenciamento.pessoas.model.PersonDTO;
+import br.com.gerenciamento.pessoas.model.Person;
 import br.com.gerenciamento.pessoas.repository.PersonRepository;
 import br.com.gerenciamento.pessoas.template.PersonTemplate;
 import org.junit.Before;
@@ -48,7 +48,7 @@ public class PersonFacadeTest {
         when(personMapper.toEntityFromDto(dto)).thenReturn(entity);
         when(personRepository.save(any(Person.class))).thenReturn(entity);
         //when
-        PersonResponseDTO responseDTO = personFacade.create(dto);
+        PersonResponse responseDTO = personFacade.create(dto);
         //then
         assertNotNull(responseDTO);
         verify(personRepository, times(1)).save(any(Person.class));
@@ -60,7 +60,7 @@ public class PersonFacadeTest {
         List<Person> entities = Collections.singletonList(template.getPerson());
         when(personRepository.findAll()).thenReturn(entities);
         //when
-        List<PersonResponseDTO> responseDTOList = personFacade.getAll();
+        List<PersonResponse> responseDTOList = personFacade.getAll();
         //then
         assertNotNull(responseDTOList);
         assertFalse(responseDTOList.isEmpty());
@@ -73,7 +73,7 @@ public class PersonFacadeTest {
         Person entity = template.getPerson();
         when(personRepository.findById(anyLong())).thenReturn(Optional.ofNullable(entity));
         //when
-        PersonResponseDTO response = personFacade.getById(1L);
+        PersonResponse response = personFacade.getById(1L);
         //then
         assertNotNull(response);
         verify(personRepository, times(1)).findById(anyLong());

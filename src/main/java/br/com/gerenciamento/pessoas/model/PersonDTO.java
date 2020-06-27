@@ -5,8 +5,10 @@ import lombok.*;
 import org.hibernate.validator.constraints.br.*;
 import javax.validation.constraints.*;
 
+@Builder
 @Data
-public class PersonResponseDTO {
+public class PersonDTO {
+
     @NotBlank
     @JsonProperty("first_name")
     private String firstName;
@@ -18,4 +20,5 @@ public class PersonResponseDTO {
     @NotBlank
     @CPF
     private String cpf;
+
 }

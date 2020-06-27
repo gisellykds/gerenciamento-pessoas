@@ -1,12 +1,16 @@
 package br.com.gerenciamento.pessoas.facade;
 
-import br.com.gerenciamento.pessoas.model.PersonResponseDTO;
-import br.com.gerenciamento.pessoas.model.dto.PersonDTO;
+import br.com.gerenciamento.pessoas.model.MessageResponse;
+import br.com.gerenciamento.pessoas.model.PersonResponse;
+import br.com.gerenciamento.pessoas.model.PersonDTO;
 import java.util.List;
 
 public interface PersonFacade {
-    public PersonResponseDTO create(PersonDTO entrada);
-    public List<PersonResponseDTO> getAll();
-    public PersonResponseDTO getById(Long id);
-    public String deleteById(Long id);
+    public PersonResponse create(PersonDTO entrada);
+    public List<PersonResponse> getAll();
+    public PersonResponse getById(Long id);
+    public List<PersonResponse> getAllActive();
+    public MessageResponse inactivePersonById(Long id);
+    public MessageResponse activePersonById(Long id);
+
 }

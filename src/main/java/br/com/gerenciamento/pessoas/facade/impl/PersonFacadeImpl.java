@@ -1,15 +1,18 @@
 package br.com.gerenciamento.pessoas.facade.impl;
 
 import br.com.gerenciamento.pessoas.mapper.PersonMapper;
-import br.com.gerenciamento.pessoas.model.PersonResponseDTO;
-import br.com.gerenciamento.pessoas.model.dto.PersonDTO;
-import br.com.gerenciamento.pessoas.model.entity.Person;
-import br.com.gerenciamento.pessoas.exceptions.NotFoundException;
+import br.com.gerenciamento.pessoas.model.MessageResponse;
+import br.com.gerenciamento.pessoas.model.PersonResponse;
+import br.com.gerenciamento.pessoas.model.PersonDTO;
+import br.com.gerenciamento.pessoas.model.Person;
+import br.com.gerenciamento.pessoas.utils.exceptions.AlreadyUpdate;
+import br.com.gerenciamento.pessoas.utils.exceptions.NotFoundException;
 import br.com.gerenciamento.pessoas.facade.PersonFacade;
 import br.com.gerenciamento.pessoas.repository.PersonRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,14 +24,14 @@ public class PersonFacadeImpl implements PersonFacade {
     private final PersonMapper mapper = PersonMapper.INSTANCE;
 
     @Override
-    public PersonResponseDTO create(PersonDTO entrada) {
+    public PersonResponse create(PersonDTO entrada) {
         Person entity = repository.save(mapper.toEntityFromDto(entrada));
-        PersonResponseDTO resposta = mapper.toResponseFromEntity(entity);
+        PersonResponse resposta = mapper.toResponseFromEntity(entity);
         return resposta;
     }
 
     @Override
-    public List<PersonResponseDTO> getAll() {
+    public List<PersonResponse> getAll() {
         List<Person> allPeople = verifyNotEmpty();
         return allPeople.stream()
                 .map(mapper::toResponseFromEntity)
@@ -36,28 +39,64 @@ public class PersonFacadeImpl implements PersonFacade {
     }
 
     @Override
-    public PersonResponseDTO getById(Long id) {
+    public PersonResponse getById(Long id) {
         Person entity = verifyIfExists(id);
-        PersonResponseDTO resposta = mapper.toResponseFromEntity(entity);
+        PersonResponse resposta = mapper.toResponseFromEntity(entity);
         return resposta;
     }
 
     @Override
-    public String deleteById(Long id) {
-        verifyIfExists(id);
-        repository.deleteById(id);
-        return "Successfully deleted!";
+    public List<PersonResponse> getAllActive() {
+        List<Person> allPeople = verifyNotEmptyActive();
+        return allPeople.stream()
+                .map(mapper::toResponseFromEntity)
+                .collect(Collectors.toList());
     }
 
-    private Person verifyIfExists(Long id) throws NotFoundException {
+    @Override
+    public MessageResponse inactivePersonById(Long id) {
+       Person entity = inactivePerson(verifyIfExists(id));
+       repository.save(entity);
+       return new MessageResponse("Successfully inactive!");
+    }
+
+    @Override
+    public MessageResponse activePersonById(Long id) {
+        Person entity = activePerson(verifyIfExists(id));
+        repository.save(entity);
+        return new MessageResponse("Successfully ative!");
+    }
+
+    private Person verifyIfExists(Long id){
         return repository.findById(id)
                 .orElseThrow(NotFoundException::new);
     }
 
-    private List<Person> verifyNotEmpty() throws NotFoundException{
+    private List<Person> verifyNotEmpty(){
         List<Person> list = repository.findAll();
-        return list.stream().findAny().map(pessoa -> list)
-                .orElseThrow(NotFoundException::new);
+        if(list.isEmpty())
+            throw new NotFoundException();
+        return list;
     }
 
+    private List<Person> verifyNotEmptyActive(){
+        List<Person> list = repository.findAllByActive(true);
+        if(list.isEmpty())
+            throw new NotFoundException();
+        return list;
+    }
+
+    private Person inactivePerson(Person entity){
+        if(entity.getActive().equals(false))
+            throw new AlreadyUpdate("active");
+        entity.setActive(false);
+        return entity;
+    }
+
+    private Person activePerson(Person entity){
+        if(entity.getActive().equals(true))
+            throw new AlreadyUpdate("inactive");
+        entity.setActive(true);
+        return entity;
+    }
 }

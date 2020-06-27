@@ -1,14 +1,12 @@
-package br.com.gerenciamento.pessoas.model.dto;
+package br.com.gerenciamento.pessoas.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.validator.constraints.br.*;
 import javax.validation.constraints.*;
 
-@Builder
 @Data
-public class PersonDTO {
-
+public class PersonResponse {
     @NotBlank
     @JsonProperty("first_name")
     private String firstName;
@@ -20,5 +18,4 @@ public class PersonDTO {
     @NotBlank
     @CPF
     private String cpf;
-
 }

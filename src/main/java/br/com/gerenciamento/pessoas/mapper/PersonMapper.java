@@ -1,10 +1,9 @@
 package br.com.gerenciamento.pessoas.mapper;
 
-import br.com.gerenciamento.pessoas.model.PersonResponseDTO;
-import br.com.gerenciamento.pessoas.model.dto.PersonDTO;
-import br.com.gerenciamento.pessoas.model.entity.Person;
+import br.com.gerenciamento.pessoas.model.PersonResponse;
+import br.com.gerenciamento.pessoas.model.PersonDTO;
+import br.com.gerenciamento.pessoas.model.Person;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
@@ -13,6 +12,6 @@ public interface PersonMapper {
 
     Person toEntityFromDto(PersonDTO pessoaDTO);
 
-    PersonResponseDTO toResponseFromEntity(Person pessoa);
+    PersonResponse toResponseFromEntity(Person pessoa);
 
 }

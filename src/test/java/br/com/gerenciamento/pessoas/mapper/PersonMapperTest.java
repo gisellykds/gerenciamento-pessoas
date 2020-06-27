@@ -1,8 +1,8 @@
 package br.com.gerenciamento.pessoas.mapper;
 
-import br.com.gerenciamento.pessoas.model.PersonResponseDTO;
-import br.com.gerenciamento.pessoas.model.dto.PersonDTO;
-import br.com.gerenciamento.pessoas.model.entity.Person;
+import br.com.gerenciamento.pessoas.model.PersonResponse;
+import br.com.gerenciamento.pessoas.model.PersonDTO;
+import br.com.gerenciamento.pessoas.model.Person;
 import br.com.gerenciamento.pessoas.template.PersonTemplate;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,7 +55,7 @@ public class PersonMapperTest {
         //given
         Person entity = template.getPerson();
         //when
-        PersonResponseDTO responseDTO = personMapper.toResponseFromEntity(entity);
+        PersonResponse responseDTO = personMapper.toResponseFromEntity(entity);
         //then
         assertNotNull(responseDTO);
         verify(personMapper, times(1)).toResponseFromEntity(any(Person.class));
@@ -66,7 +66,7 @@ public class PersonMapperTest {
         //given
         Person entity = null;
         //when
-        PersonResponseDTO responseDTO = personMapper.toResponseFromEntity(entity);
+        PersonResponse responseDTO = personMapper.toResponseFromEntity(entity);
         //then
         assertNull(responseDTO);
         verify(personMapper, times(1)).toResponseFromEntity(null);

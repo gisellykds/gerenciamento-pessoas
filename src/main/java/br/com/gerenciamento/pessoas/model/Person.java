@@ -1,5 +1,6 @@
-package br.com.gerenciamento.pessoas.model.entity;
+package br.com.gerenciamento.pessoas.model;
 
+import br.com.gerenciamento.pessoas.utils.enums.RolePerson;
 import lombok.*;
 import javax.persistence.*;
 
@@ -11,12 +12,15 @@ public class Person {
     private Long id;
 
     @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
+    private String name;
 
     @Column(nullable = false, unique = true)
     private String cpf;
+
+    @Column(nullable = false)
+    private Boolean active;
+
+    @Column(nullable = false)
+    private RolePerson role;
 
 }

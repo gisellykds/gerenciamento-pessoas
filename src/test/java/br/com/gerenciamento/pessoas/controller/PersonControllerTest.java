@@ -1,8 +1,8 @@
 package br.com.gerenciamento.pessoas.controller;
 
 import br.com.gerenciamento.pessoas.facade.impl.PersonFacadeImpl;
-import br.com.gerenciamento.pessoas.model.PersonResponseDTO;
-import br.com.gerenciamento.pessoas.model.dto.PersonDTO;
+import br.com.gerenciamento.pessoas.model.PersonResponse;
+import br.com.gerenciamento.pessoas.model.PersonDTO;
 import br.com.gerenciamento.pessoas.template.PersonTemplate;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,11 +35,11 @@ public class PersonControllerTest {
     public void mustCreatePerson(){
         //given
         PersonDTO personDTO = template.getPersonDto();
-        PersonResponseDTO personResponseDTO = template.getPersonResponseDTO();
+        PersonResponse personResponseDTO = template.getPersonResponseDTO();
         when(personFacade.create(any(PersonDTO.class))).thenReturn(personResponseDTO);
 
         //when
-        ResponseEntity<PersonResponseDTO> response = personController.create(personDTO);
+        ResponseEntity<PersonResponse> response = personController.create(personDTO);
 
         //then
         assertNotNull(response);
@@ -50,11 +50,11 @@ public class PersonControllerTest {
     @Test
     public void mustGetPerson(){
         //given
-        List<PersonResponseDTO> personResponseDTOList = Collections.singletonList(template.getPersonResponseDTO());
+        List<PersonResponse> personResponseDTOList = Collections.singletonList(template.getPersonResponseDTO());
         when(personFacade.getAll()).thenReturn(personResponseDTOList);
 
         //when
-        ResponseEntity<List<PersonResponseDTO>> response = personController.getAll();
+        ResponseEntity<List<PersonResponse>> response = personController.getAll();
 
         //then
         assertNotNull(response);
@@ -65,11 +65,11 @@ public class PersonControllerTest {
     @Test
     public void mustGetPersonById(){
         //given
-        PersonResponseDTO personResponseDTO = template.getPersonResponseDTO();
+        PersonResponse personResponseDTO = template.getPersonResponseDTO();
         when(personFacade.getById(anyLong())).thenReturn(personResponseDTO);
 
         //when
-        ResponseEntity<PersonResponseDTO> response = personController.getById(1L);
+        ResponseEntity<PersonResponse> response = personController.getById(1L);
 
         //then
         assertNotNull(response);

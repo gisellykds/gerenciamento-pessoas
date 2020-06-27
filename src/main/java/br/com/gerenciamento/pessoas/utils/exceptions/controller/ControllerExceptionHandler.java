@@ -1,7 +1,7 @@
-package br.com.gerenciamento.pessoas.exceptions.controller;
+package br.com.gerenciamento.pessoas.utils.exceptions.controller;
 
-import br.com.gerenciamento.pessoas.exceptions.NotFoundException;
-import br.com.gerenciamento.pessoas.exceptions.response.ResponseException;
+import br.com.gerenciamento.pessoas.utils.exceptions.NotFoundException;
+import br.com.gerenciamento.pessoas.utils.exceptions.response.ResponseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

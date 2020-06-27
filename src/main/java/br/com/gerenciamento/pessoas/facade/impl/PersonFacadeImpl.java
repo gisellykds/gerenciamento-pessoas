@@ -9,10 +9,10 @@ import br.com.gerenciamento.pessoas.utils.exceptions.AlreadyUpdate;
 import br.com.gerenciamento.pessoas.utils.exceptions.NotFoundException;
 import br.com.gerenciamento.pessoas.facade.PersonFacade;
 import br.com.gerenciamento.pessoas.repository.PersonRepository;
+import br.com.gerenciamento.pessoas.utils.exceptions.ParameterNotIdentify;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,11 +46,20 @@ public class PersonFacadeImpl implements PersonFacade {
     }
 
     @Override
-    public List<PersonResponse> getAllActive() {
-        List<Person> allPeople = verifyNotEmptyActive();
+    public List<PersonResponse> getAllActiveOrInactive(String active) {
+        Boolean activeEntity = verifyActive(active);
+        List<Person> allPeople = verifyNotEmptyCriteria(activeEntity);
         return allPeople.stream()
                 .map(mapper::toResponseFromEntity)
                 .collect(Collectors.toList());
+    }
+
+    private Boolean verifyActive(String active) {
+        if (active.equals("active"))
+            return true;
+        if(active.equals("inactive"))
+            return false;
+        throw new ParameterNotIdentify(active);
     }
 
     @Override
@@ -79,8 +88,8 @@ public class PersonFacadeImpl implements PersonFacade {
         return list;
     }
 
-    private List<Person> verifyNotEmptyActive(){
-        List<Person> list = repository.findAllByActive(true);
+    private List<Person> verifyNotEmptyCriteria(Boolean active){
+        List<Person> list = repository.findAllByActive(active);
         if(list.isEmpty())
             throw new NotFoundException();
         return list;

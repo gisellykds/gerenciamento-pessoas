@@ -9,8 +9,7 @@ public interface PersonFacade {
     public PersonResponse create(PersonDTO entrada);
     public List<PersonResponse> getAll();
     public PersonResponse getById(Long id);
-    public List<PersonResponse> getAllActive();
+    public List<PersonResponse> getAllActiveOrInactive(String active);
     public MessageResponse inactivePersonById(Long id);
     public MessageResponse activePersonById(Long id);
-
 }

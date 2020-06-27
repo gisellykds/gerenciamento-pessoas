@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -19,18 +20,19 @@ import java.util.List;
 @RequestMapping("/api/v1/person")
 @CrossOrigin
 @Configuration
+@Validated
 public class PersonController {
 
     private PersonFacade personFacade;
 
-    @GetMapping("/get")
-    public ResponseEntity<List<PersonResponse>> getAllActive() {
-        return ResponseEntity.ok(personFacade.getAllActive());
-    }
-
-    @GetMapping("/getAll")
+    @GetMapping("")
     public ResponseEntity<List<PersonResponse>> getAll() {
         return ResponseEntity.ok(personFacade.getAll());
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<List<PersonResponse>> getAllActive(@RequestParam(value = "status") String active) {
+        return ResponseEntity.ok(personFacade.getAllActiveOrInactive(active));
     }
 
     @GetMapping("/{id}")
@@ -38,18 +40,18 @@ public class PersonController {
         return ResponseEntity.ok(personFacade.getById(id));
     }
 
-    @PostMapping("")
+    @PostMapping("/new")
     public ResponseEntity<PersonResponse> create(@RequestBody @Valid PersonDTO entrada){
         return new ResponseEntity(personFacade.create(entrada), HttpStatus.CREATED);
     }
 
     @PutMapping("/active/{id}")
-    public ResponseEntity<MessageResponse> activeById(@PathVariable Long id)  {
+    public ResponseEntity<MessageResponse> activeById(@PathVariable @NotNull Long id)  {
         return ResponseEntity.ok(personFacade.activePersonById(id));
     }
 
     @PutMapping("/inactive/{id}")
-    public ResponseEntity<MessageResponse> inactiveById(@PathVariable Long id)  {
+    public ResponseEntity<MessageResponse> inactiveById(@PathVariable @NotNull Long id)  {
         return ResponseEntity.ok(personFacade.inactivePersonById(id));
     }
 }

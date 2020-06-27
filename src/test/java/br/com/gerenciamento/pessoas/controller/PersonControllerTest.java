@@ -77,15 +77,15 @@ public class PersonControllerTest {
         verify(personFacade, times(1)).getById(anyLong());
     }
 
-    @Test
-    public void mustDeletePersonById(){
-        //given
-        when(personFacade.deleteById(anyLong())).thenReturn("Successfully deleted");
-        //when
-        ResponseEntity<String> response = personController.deleteById(1L);
-        //then
-        assertNotNull(response);
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
-        verify(personFacade, times(1)).deleteById(anyLong());
-    }
+//    @Test
+//    public void mustDeletePersonById(){
+//        //given
+//        when(personFacade.deleteById(anyLong())).thenReturn("Successfully deleted");
+//        //when
+//        ResponseEntity<String> response = personController.deleteById(1L);
+//        //then
+//        assertNotNull(response);
+//        assertEquals(response.getStatusCode(), HttpStatus.OK);
+//        verify(personFacade, times(1)).deleteById(anyLong());
+//    }
 }

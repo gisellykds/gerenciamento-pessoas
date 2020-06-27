@@ -20,7 +20,7 @@ public class Person {
     @Column(nullable = false)
     private Boolean active;
 
-    @Column(nullable = false)
-    private RolePerson role;
+//    @Column(nullable = false)
+//    private RolePerson role;
 
 }

@@ -79,15 +79,15 @@ public class PersonFacadeTest {
         verify(personRepository, times(1)).findById(anyLong());
     }
 
-    @Test
-    public void mustDeleteByIdPerson(){
-        //given
-        Person entity = template.getPerson();
-        when(personRepository.findById(anyLong())).thenReturn(Optional.ofNullable(entity));
-        //when
-        String response = personFacade.deleteById(1L);
-        //then
-        assertNotNull(response);
-        verify(personRepository, times(1)).findById(anyLong());
-    }
+//    @Test
+//    public void mustDeleteByIdPerson(){
+//        //given
+//        Person entity = template.getPerson();
+//        when(personRepository.findById(anyLong())).thenReturn(Optional.ofNullable(entity));
+//        //when
+//        String response = personFacade.deleteById(1L);
+//        //then
+//        assertNotNull(response);
+//        verify(personRepository, times(1)).findById(anyLong());
+//    }
 }

@@ -25,7 +25,9 @@ public class PersonFacadeImpl implements PersonFacade {
 
     @Override
     public PersonResponse create(PersonDTO entrada) {
-        Person entity = repository.save(mapper.toEntityFromDto(entrada));
+        Person entity = mapper.toEntityFromDto(entrada);
+        entity.setActive(true);
+        entity = repository.save(entity);
         PersonResponse resposta = mapper.toResponseFromEntity(entity);
         return resposta;
     }

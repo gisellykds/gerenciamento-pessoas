@@ -23,6 +23,9 @@ Crud básico em Java e Spring Boot para gerenciamento de pessoas.
     }
 ]
 ````
+
+<hr>
+
 `[Response - Status 400 Bad Request]`
 
 ````
@@ -52,6 +55,9 @@ Crud básico em Java e Spring Boot para gerenciamento de pessoas.
     }
 ]
 ````
+
+<hr>
+
 `[Response - Status 400 Bad Request]`
 
 ````
@@ -60,6 +66,8 @@ Crud básico em Java e Spring Boot para gerenciamento de pessoas.
     "message": "No registration found."
 }
 ````
+
+<hr>
 
 `GET /get?status=`
   
@@ -78,6 +86,9 @@ Crud básico em Java e Spring Boot para gerenciamento de pessoas.
     }
 ]
 ````
+
+<hr>
+
 `[Response - Status 400 Bad Request]`
 
 ````
@@ -86,6 +97,8 @@ Crud básico em Java e Spring Boot para gerenciamento de pessoas.
     "message": "No registration found."
 }
 ````
+
+<hr>
 
 ````
   http://localhost:8080/api/v1/person/get?status=invalido
@@ -117,6 +130,9 @@ Crud básico em Java e Spring Boot para gerenciamento de pessoas.
     "cpf":"709.998.950-28"
 }
 ````
+
+<hr>
+
 `[Response - Status 201 Created]`
 
 ````

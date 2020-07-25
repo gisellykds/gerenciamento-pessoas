@@ -41,8 +41,8 @@ public class PersonController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<PersonResponse> create(@RequestBody @Valid PersonDTO entrada){
-        return new ResponseEntity(personFacade.create(entrada), HttpStatus.CREATED);
+    public ResponseEntity<PersonResponse> create(@RequestBody @Valid PersonDTO input){
+        return new ResponseEntity(personFacade.create(input), HttpStatus.CREATED);
     }
 
     @PutMapping("/active/{id}")

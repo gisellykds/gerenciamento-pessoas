@@ -18,6 +18,5 @@ public class PersonDTO {
     @CPF
     private String cpf;
 
-//    @JsonProperty("role")
-//    private RolePerson role;
+
 }

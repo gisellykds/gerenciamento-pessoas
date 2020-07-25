@@ -6,7 +6,7 @@ import br.com.gerenciamento.pessoas.model.PersonDTO;
 import java.util.List;
 
 public interface PersonFacade {
-    public PersonResponse create(PersonDTO entrada);
+    public PersonResponse create(PersonDTO input);
     public List<PersonResponse> getAll();
     public PersonResponse getById(Long id);
     public List<PersonResponse> getAllActiveOrInactive(String active);

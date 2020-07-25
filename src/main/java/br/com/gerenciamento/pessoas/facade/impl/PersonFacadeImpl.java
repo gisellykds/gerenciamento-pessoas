@@ -24,8 +24,8 @@ public class PersonFacadeImpl implements PersonFacade {
     private final PersonMapper mapper = PersonMapper.INSTANCE;
 
     @Override
-    public PersonResponse create(PersonDTO entrada) {
-        Person entity = mapper.toEntityFromDto(entrada);
+    public PersonResponse create(PersonDTO input) {
+        Person entity = mapper.toEntityFromDto(input);
         entity.setActive(true);
         entity = repository.save(entity);
         PersonResponse resposta = mapper.toResponseFromEntity(entity);
@@ -75,7 +75,7 @@ public class PersonFacadeImpl implements PersonFacade {
     public MessageResponse activePersonById(Long id) {
         Person entity = activePerson(verifyIfExists(id));
         repository.save(entity);
-        return new MessageResponse("Successfully ative!");
+        return new MessageResponse("Successfully active!");
     }
 
     private Person verifyIfExists(Long id){

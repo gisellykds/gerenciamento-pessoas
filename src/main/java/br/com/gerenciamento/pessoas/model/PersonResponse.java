@@ -11,5 +11,4 @@ public class PersonResponse {
 
     private Boolean active;
 
-    //private RolePerson role;
 }

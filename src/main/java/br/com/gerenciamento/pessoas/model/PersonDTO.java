@@ -8,6 +8,8 @@ import javax.validation.constraints.*;
 
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PersonDTO {
 
     @NotBlank
